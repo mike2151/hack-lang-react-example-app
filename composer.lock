@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eadbb93c15554d10f1cdeefab12fd786",
+    "content-hash": "ed8c4c0ac10dad27ac11537d5c876c2e",
     "packages": [
         {
             "name": "facebook/difflib",
@@ -110,6 +110,49 @@
                 "MIT"
             ],
             "time": "2020-03-27T16:47:22+00:00"
+        },
+        {
+            "name": "facebook/xhp-lib",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hhvm/xhp-lib.git",
+                "reference": "c5ecd7328d94c34e20a617091d9f4f094a1b6d3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hhvm/xhp-lib/zipball/c5ecd7328d94c34e20a617091d9f4f094a1b6d3d",
+                "reference": "c5ecd7328d94c34e20a617091d9f4f094a1b6d3d",
+                "shasum": ""
+            },
+            "require": {
+                "hhvm": "^4.25",
+                "hhvm/type-assert": "^3.0"
+            },
+            "require-dev": {
+                "facebook/fbexpect": "^2.0.0",
+                "hhvm/hacktest": "^2.0",
+                "hhvm/hhvm-autoload": "^2.0|^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Class library for XHP",
+            "homepage": "https://github.com/facebook/xhp-lib",
+            "keywords": [
+                "facebook",
+                "hack",
+                "hhvm",
+                "xhp"
+            ],
+            "time": "2020-02-19T18:53:59+00:00"
         },
         {
             "name": "hhvm/hacktest",
@@ -371,6 +414,5 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

@@ -4,6 +4,7 @@
         "hhvm/hacktest": "^2.1",
         "facebook/fbexpect": "^2.7",
         "hhvm/hhvm-autoload": "^3.0",
-        "hhvm/hhast": "^4.41"
+        "hhvm/hhast": "^4.41",
+        "facebook/xhp-lib": "^3.1"
     }
 }
