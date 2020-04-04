@@ -1,0 +1,21 @@
+{
+    "name": "facebook/xhp-lib",
+    "description": "Class library for XHP",
+    "keywords": ["facebook", "xhp", "hhvm", "hack"],
+    "homepage": "https://github.com/facebook/xhp-lib",
+    "license": ["MIT"],
+    "require": {
+        "hhvm": "^4.25",
+        "hhvm/type-assert": "^3.0"
+    },
+    "require-dev": {
+        "facebook/fbexpect": "^2.0.0",
+        "hhvm/hhvm-autoload": "^2.0|^3.0",
+        "hhvm/hacktest": "^2.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
+    }
+}

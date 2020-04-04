@@ -1,0 +1,96 @@
+import React from 'react';
+
+// class adapted from https://reactjs.org/docs/faq-ajax.html
+class HackPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      payload: ''
+    };
+  }
+
+  //
+  // parser code
+  //
+
+  // helper methods for replacing react divs with actual react code
+  allIndexOf(str, toSearch) {
+    var indices = [];
+    for(var pos = str.indexOf(toSearch); pos !== -1; pos = str.indexOf(toSearch, pos + 1)) {
+        indices.push(pos);
+    }
+    return indices;
+  }
+
+  extractTypeFromStr(div_string) {
+    let starting_idx = div_string.indexOf('data-componentType=') + 20;
+    let ending_idx = div_string.indexOf('"', starting_idx);
+    return div_string.substring(starting_idx, ending_idx);
+  }
+
+  // returns json of props
+  extractPropsFromStr(div_string) {
+    let starting_idx = div_string.indexOf('data-componentProps=') + 21;
+    let ending_idx = div_string.indexOf('"', starting_idx);
+    let string_json = div_string.substring(starting_idx, ending_idx);
+    return JSON.parse('"' + string_json + '"');
+  }
+
+  constructComponentFromTypeAndProps(type, props) {
+    let comp = "<" + type + " ";
+    Object.keys(props).forEach(function(key) {
+      let val = props[key];
+      comp = comp + key + "=" + val + " ";
+    });
+    return comp
+  }
+
+
+  processXHP(XHP) {
+    // replace each div with React code
+    let ctx = this;
+    let div_indexes = this.allIndexOf(XHP, "<div");
+    div_indexes.forEach(function(starting_div_index) {
+      let ending_div_index = XHP.indexOf("</div>", starting_div_index) + 6;
+      let div_substring = XHP.substring(starting_div_index, ending_div_index);
+      let component_type = ctx.extractTypeFromStr(div_substring);
+      let component_props = ctx.extractPropsFromStr(div_substring);
+      console.log(component_props == 'string');
+      let component_str = ctx.constructComponentFromTypeAndProps(component_type, component_props);
+      console.log(component_str);
+    });
+    return XHP;
+  }
+
+  //
+  // end parser code
+  //
+
+  componentDidMount() {
+    fetch(this.props.url)
+      .then(res => res.text())
+      .then(
+        (result) => {
+          result = this.processXHP(result);
+          this.setState({
+            isLoaded: true,
+            payload: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  render() {
+    return <div dangerouslySetInnerHTML={{__html: this.state.payload}} />;
+  }
+}
+
+export default HackPage
